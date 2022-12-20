@@ -1,0 +1,54 @@
+.app.dark {
+	background-color: #222;
+	color: rgb(156,156, 156);
+
+	.table {
+		background-color: #222;
+		color:rgb(156,156, 156);
+
+		.tableCell {
+			background-color: #222;
+			color:rgb(156,156, 156);
+
+		}
+
+	}
+
+	.navbar {
+		.search {
+			border-color: gray;
+		}
+		input {
+			color:rgb(156, 156, 156);
+		}
+		border-color: #333;
+		
+	}
+	.sidebar {
+		hr {
+			border-color: #333;
+		}
+		border-color: #333;
+	}
+	
+	.list {
+		.datatable {
+			.grid {
+				color:rgb(156,156, 156);
+				border: none;
+				.cellAction {
+					.viewButton {
+						color: gray;
+						border-color: gray;
+					}
+				}
+			}
+		}
+	}
+		
+	.widget, .chart, .featured, .listContainer {
+		-webkit-box-shadow: 2px 4px 10px 1px gray;
+		box-shadow: 2px 4px 10px 1px gray;
+	}
+
+}
