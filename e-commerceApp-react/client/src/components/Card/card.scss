@@ -1,0 +1,60 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	color: black;
+	gap: 5px;
+	.container {
+		position: relative;
+
+		img {
+			height: 300px;
+			width: 200px;
+			object-fit: cover;
+		}
+		
+		// .img1:hover {
+		// 	opacity: 0;
+		// }
+		
+		.img2 {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1000;
+		}
+
+		.label {
+			position: absolute;
+			top: 4px;
+			left: 4px;
+
+			background-color: white;
+			color: #80A0A0;
+			padding: 3px;
+			font-size: 9px;
+			font-weight: 900;
+		}
+	}
+
+	h2 {
+		font-size: 13px;
+		font-weight: 600;
+	}
+	
+	.prices {
+		display: flex;
+		gap: 10px;
+		font-weight: 600;
+		font-size: 12px;
+		.oldprice {
+			text-decoration-line: line-through;
+			color: gray;
+		}
+	}
+	
+}
+
+.link {
+	text-decoration: none;
+	// color: none;
+}

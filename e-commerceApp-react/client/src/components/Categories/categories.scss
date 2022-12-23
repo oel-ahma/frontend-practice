@@ -1,0 +1,79 @@
+.categories {
+	margin: 10px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+
+	display: flex;
+	height: 80vh;
+	gap: 10px;
+		overflow: hidden;
+		
+	img {
+		transition: all 1s ease;
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
+	
+	.col {
+		position: relative;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		overflow: hidden;
+
+		.row {
+			position: relative;
+			flex: 1;
+			overflow: hidden;
+		}
+	}
+	
+	.col-m {
+		overflow: hidden;
+		position: relative;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.col-l {
+		overflow: hidden;
+		
+		flex: 2;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		
+		.row-l {
+			display: flex;
+			gap: 10px;
+		}
+
+		.row {
+			position: relative;
+			flex: 1;
+			overflow: hidden;
+		}
+	}
+	
+	button {
+		position : absolute;
+		height: 50px;
+		min-width: 100px;
+		width: fit-content;
+		padding: 10px;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		cursor: pointer;
+		border: none;
+		background-color: white;
+		text-transform: uppercase;
+		font-weight: 500;
+	}
+	
+}

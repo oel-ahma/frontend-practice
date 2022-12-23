@@ -8,7 +8,6 @@ const Datatable = () => {
 	const [data, setData] = useState(userRows);
 
 	const handleDelete = (id) => {
-		console.log("tsta")
 		setData(data.filter( item => item.id !== id))
 	}
 

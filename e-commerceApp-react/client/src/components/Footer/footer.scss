@@ -1,0 +1,67 @@
+.footer {
+	margin: 100px 100px 20px 100px;
+
+	.wrapper {
+		color: rgb(73, 73, 73);
+
+		.link {
+			text-decoration: none;
+			color: rgb(73, 73, 73);
+		}
+
+		.top {
+			display: flex;
+			gap: 20px;
+			
+			.items {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+			
+				span {
+					font-size: 12px;
+					padding-right: 20px;
+					text-align: justify;
+				}
+
+				h2 {
+					font-size: 15px;
+					font-weight: bold;
+				}
+			}
+
+
+		}
+
+
+		.bottom {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 80px;
+
+			.left {
+				display: flex;
+				align-items: center;
+				gap: 40px;
+				
+				.logo {
+					font-size: 20px;
+					font-weight: 900;
+					color: #2978F7;
+				}
+				
+				span {
+					font-size: 12px;
+				}
+			}
+			.right {
+
+				img {
+					height: 80px;
+				}
+			}
+		}
+	}
+}

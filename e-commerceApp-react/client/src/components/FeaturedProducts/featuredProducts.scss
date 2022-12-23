@@ -1,0 +1,32 @@
+.featuredProducts {
+	width: calc(100vw - 300px);
+	left: 0;
+	right: 0;
+	margin: auto;
+	margin-top: 50px;	
+	margin-bottom: 50px;
+
+	.top {
+		display: flex;
+		margin-bottom: 30px;
+		h1 {
+			flex: 2;
+			font-size: 25px;
+		}
+		p {
+			flex: 3;
+			font-size: 13px;
+			color: gray;
+		}
+	}
+
+	.bottom {
+		display: flex;
+		width: max-content;
+		left: 0;
+		right: 0;
+		margin: auto;
+		gap: 40px;
+		
+	}
+}
