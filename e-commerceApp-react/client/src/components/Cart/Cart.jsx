@@ -1,71 +1,61 @@
-import { useState } from "react";
 import "./cart.scss"
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { useDispatch, useSelector } from 'react-redux'
+import { makeImgUrl } from "../../makeImgUrl";
+import { removeItem, resetCart } from "../../redux/cartReducer";
+import {loadStripe} from '@stripe/stripe-js';
+import { makeRequest } from "../../makeRequest";
 
 const Cart = () => {
-	const INITIAL_DATA = [{
-		id: 1,
-		img: [
-			"https://images.pexels.com/photos/13896800/pexels-photo-13896800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			"https://images.pexels.com/photos/3249931/pexels-photo-3249931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-		],
-		title: "Long Sleeve Graphic T-shirt",
-		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et distinctio aliquam iure alias tempore at ab officia temporibus vero pariatur, tempora autem ratione illum, modi consequatur obcaecati odit. Veritatis, ducimus.",
-		oldprice: 19,
-		isNew: true,
-		price: 12.9
-	},
-	{
-		id: 2,
-		img: [
-			"https://images.pexels.com/photos/3249931/pexels-photo-3249931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			"https://images.pexels.com/photos/13896800/pexels-photo-13896800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-		],
-		title: "Awesome Sneakers",
-		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et distinctio aliquam iure alias tempore at ab officia temporibus vero pariatur, tempora autem ratione illum, modi consequatur obcaecati odit. Veritatis, ducimus.",
-		oldprice: 22,
-		isNew: true,
-		price: 149.9
-	}
-	];
+	const products = useSelector(state => state.cart.products)
+	const dispatch = useDispatch();
 
-	const [cartItems, setCartItems] = useState(INITIAL_DATA);
+	const stripePromise = loadStripe(
+		'pk_test_51MJgQxAM3p3VLCoxS4SpoqdSkTUcYrdNRm0VOtridnlco8v64hUICX2uvvEQmKkiJtn6tGvWaarlbqu4lp5P77rz00LiptqXWI'
+		);
 
-	const changeCartItems = (id) => {
-		setCartItems(cartItems.filter(item => item.id !== id));
-	}
-
-	const resetCart = () => {
-		setCartItems(INITIAL_DATA);
+	const handlePayment = async () => {
+		try {
+			const stripe = await stripePromise;
+			const res = await makeRequest.post("/orders", { products });
+			console.log(res.data.stripeSession.id)
+			await stripe.redirectToCheckout({
+				sessionId: res.data.stripeSession.id
+			});
+		} catch (err) {
+			// console.error(err);
+		}
 	}
 
 	return (
 		<div className="cart">
 			<span className="cartTitle">Products in your cart</span>
 			<div className="cartItems">
-				{cartItems.map((item) =>
+				{products.map((item) =>
 					<div className="center"  key={item.id}>
-						<img src={item?.img[0]} alt="" />
+						<img src={makeImgUrl(item?.img)} alt="" />
 						<div className="item">
 							<span className="title">{item.title}</span>
 							<span className="desc">{item.desc.substring(0, 100)}</span>
-							<span className="quantity">1 x ${item.price}</span>
+							<span className="quantity">{item.quantity} x ${item.price}</span>
 						</div>
-						<DeleteOutlineIcon id={item.id} className="icon" onClick={(e) => changeCartItems(parseInt(e.target.id))} />
+						<div className="icon" onClick={() => dispatch(removeItem(item.id))}>
+							<DeleteOutlineIcon id={item.id}/>
+						</div>
 					</div>
 				)}
 			</div>
 			<div className="total">
 				SUBTOTAL
 				<span>
-					${cartItems.reduce((acc, obj) => {
-						return acc + obj.price
-					}, 0)}
+					${products.reduce((acc, value) => 
+						acc + (value.price * value.quantity) 
+					 , 0).toFixed(2)}
 				</span>
 			</div>
 			<div className="bottom">
-				<button>PROCEED TO CHECKOUT</button>
-				<span onClick={() => resetCart()}>Reset Cart</span>
+				<button onClick={handlePayment}>PROCEED TO CHECKOUT</button>
+				<span onClick={() => dispatch(resetCart())}>Reset Cart</span>
 			</div>
 		</div>
 	)

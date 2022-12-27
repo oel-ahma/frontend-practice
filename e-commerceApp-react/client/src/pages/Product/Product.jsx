@@ -3,55 +3,70 @@ import "./product.scss"
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BalanceIcon from '@mui/icons-material/Balance';
+import { useParams } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
+import { makeImgUrl } from "../../makeImgUrl";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartReducer";
 
 const Product = () => {
-	const item = {
-		id: 1,
-		img: [
-			"https://images.pexels.com/photos/13896800/pexels-photo-13896800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-			"https://images.pexels.com/photos/3249931/pexels-photo-3249931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-		],
-		title: "Long Sleeve Graphic T-shirt",
-		oldprice: 19,
-		isNew: true,
-		price: 12
-	};
 
-	const [quantity, setQuantity] = useState(0);
-	const [selectedImage, setSelectedImage] = useState(item.img[0]);
+	const id = useParams().id;
+	const [quantity, setQuantity] = useState(1);
+
+	const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
+	const [selectedImage, setSelectedImage] = useState(0);
+
+	const dispatch = useDispatch();
 
 	return (
 		<div className="product">
-			<div className="left">
-				{item.img.map(((e, i) =>
-					<div className="item" key={i}>
-						<img src={e} alt="" onClick={(e) => setSelectedImage(e.target.src)}/>
-					</div>
-				))}
-			</div>
-			<div className="center">
-				<img src={selectedImage} alt="" />
-			</div>
-			<div className="right">
-				<h2>{item.title}</h2>
-				<span>${item.price}</span>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo iusto quam porro sequi quisquam iure nam, perferendis dignissimos ex quaerat corrupti necessitatibus ut reprehenderit eius id odio! Architecto, consectetur alias.</p>
-				<div className="quantity">
-					<button className="quantityButton" onClick={() => setQuantity(quantity === 0 ? 0 : quantity - 1)}>-</button>
-					<span>{quantity}</span>
-					<button className="quantityButton" onClick={() => setQuantity(quantity + 1)}>+</button>
-				</div>
-				<div className="addToCart">
-					<AddShoppingCartIcon />
-					<span>ADD TO CART</span>
-				</div>
-				<div className="addTo">
-					<FavoriteBorderIcon/>
-					<span>ADD TO WISH LIST</span>
-					<BalanceIcon/>
-					<span>ADD TO COMPARE</span>
-				</div>
-			</div>
+			{error
+				? "Something wrong happend!"
+				: loading
+					? ("loading")
+					: (
+						<>
+							<div className="left">
+								{data?.attributes.images.data.map(((e, i) =>
+									<div className="item" key={i}>
+										<img src={makeImgUrl(e)} alt="" onClick={() => setSelectedImage(i)} />
+									</div>
+								))}
+							</div>
+							<div className="center">
+								<img src={makeImgUrl(data?.attributes?.images?.data[selectedImage])} alt="" />
+							</div>
+							<div className="right">
+								<h2>{data?.attributes?.title}</h2>
+								<span>${data?.attributes?.price}</span>
+								<p>{data?.attributes?.description}</p>
+								<div className="quantity">
+									<button className="quantityButton" onClick={() => setQuantity(quantity === 0 ? 0 : quantity - 1)}>-</button>
+									<span>{quantity}</span>
+									<button className="quantityButton" onClick={() => setQuantity(quantity + 1)}>+</button>
+								</div>
+								<div className="addToCart" onClick={() =>
+									dispatch(addToCart({
+										id: data?.id,
+										quantity: quantity,
+										price: data?.attributes?.price,
+										title: data?.attributes?.title,
+										desc: data?.attributes?.description,
+										img: data?.attributes?.images.data[0]
+									}))}>
+									<AddShoppingCartIcon />
+									<span >ADD TO CART</span>
+								</div>
+								<div className="addTo">
+									<FavoriteBorderIcon />
+									<span>ADD TO WISH LIST</span>
+									<BalanceIcon />
+									<span>ADD TO COMPARE</span>
+								</div>
+							</div>
+						</>
+					)}
 		</div>
 	)
 }
