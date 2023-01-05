@@ -45,3 +45,12 @@
 		}
 	}
 }
+
+@media screen and (max-width: 990px) {
+	.contact-container {
+		padding: 0 20px 0 20px;
+	span {
+		display: none;
+	}
+}
+}

@@ -23,7 +23,7 @@ const Categories = () => {
 
 	const changeColor = (e) => {
 		const newHover = hover.map((value, index) => {
-			if (index === e.currentTarget.id) {
+			if (index === parseInt(e.currentTarget.id)) {
 				return !value;
 			}
 			return value;
@@ -42,7 +42,7 @@ const Categories = () => {
 				</div>
 				<div className="row" id="1" onMouseEnter={e => changeColor(e)} onMouseLeave={() => setHover(INITIALE_STATE)}>
 					<img alt="" src={imgs[1]} />
-					<Link to={"/products/2"}>
+					<Link to={"/products/1"}>
 						<button style={{ backgroundColor: hover[1] ? "white" : "#2978F5", color: hover[1] ? "black" : "white" }}>WOMEN</button>
 					</Link>
 				</div>
@@ -57,7 +57,7 @@ const Categories = () => {
 				<div className="row row-l">
 					<div className="col" id="3" onMouseEnter={e => changeColor(e)} onMouseLeave={() => setHover(INITIALE_STATE)}>
 						<img alt="" src={imgs[2]} />
-						<Link to={"/products/0"}>
+						<Link to={"/products/2"}>
 							<button style={{ backgroundColor: hover[3] ? "white" : "#2978F5", color: hover[3] ? "black" : "white" }}>MEN</button>
 						</Link>
 					</div>

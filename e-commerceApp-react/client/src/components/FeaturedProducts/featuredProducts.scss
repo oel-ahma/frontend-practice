@@ -23,11 +23,24 @@
 
 	.bottom {
 		display: flex;
-		width: max-content;
+		flex-wrap: wrap;
+		max-width: max-content;
 		left: 0;
 		right: 0;
 		margin: auto;
 		gap: 40px;
+		justify-content: center;
 		
 	}
+}
+
+@media screen and (max-width: 1150px) {
+	.featuredProducts{
+		width: calc(100vw - 60px);
+		padding: 20px;
+		.top {
+			flex-direction: column;
+		}
+	}
+		
 }

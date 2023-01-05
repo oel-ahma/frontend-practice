@@ -84,7 +84,33 @@
 			justify-content: center;
 			flex-wrap: wrap;
 			gap: 50px;
-
+			
 		}
 	}
+}
+
+@media screen and (max-width: 880px) {
+	.products {
+		flex-direction: column;
+		
+		.left {
+			position: relative;
+			top: 0;
+			padding-bottom: 40px;
+		}
+		.right {
+			width: 100%;
+			.topImg {
+				display: none;
+			}
+			.cards {
+				max-width: max-content;
+				margin: auto;
+				left: 0;
+				right: 0;
+				gap: 20px;
+				padding: 0 10px 0 10px;
+			}
+	}
+}
 }

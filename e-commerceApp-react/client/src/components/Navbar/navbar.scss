@@ -1,9 +1,9 @@
 .navbar {
 	.wrapper {
-		
+
 		.link {
-		text-decoration: none;
-		color: rgb(73, 73, 73);
+			text-decoration: none;
+			color: rgb(73, 73, 73);
 		}
 
 		margin: 10px;
@@ -12,47 +12,52 @@
 		justify-content: space-between;
 		color: rgb(73, 73, 73);
 		font-weight: 600;
-		
+
 		.left {
 			display: flex;
 			padding-left: 20px;
 			align-items: center;
 			gap: 20px;
-			.flag, .usd {
+
+			.flag,
+			.usd {
 				img {
-					width: 20px;	
+					width: 20px;
 				}
+
 				display: flex;
 				align-items: center;
 			}
 		}
-		
+
 		.center {
 			font-size: 20px;
 		}
-		
+
 		.right {
 			display: flex;
+
 			align-items: center;
 			gap: 20px;
 			padding-right: 20px;
-			
-			.icons, .cartIcon {
+
+			.icons,
+			.cartIcon {
 				display: flex;
 				align-items: center;
 				gap: 20px;
 				font-size: 18px;
 			}
-			
+
 			.icon {
 				cursor: pointer;
 			}
-			
+
 			.cartIcon {
 				position: relative;
-				
+
 			}
-			
+
 			.cartItems {
 				position: absolute;
 				top: -5px;
@@ -66,7 +71,30 @@
 				background-color: #2978F7;
 				cursor: pointer;
 			}
+
+			.menu {
+				display: none;
+			}
 		}
 
 	}
+
+}
+
+
+@media screen and (max-width: 1150px) {
+	.navbar {
+		.wrapper {
+			.responsive {
+				display: none;
+			}
+			.right {
+					.menu {
+						display:block;
+					}
+				}
+		}
+	}
+
+	
 }

@@ -62,18 +62,18 @@ return (
 						</Link>
 					</div>
 				</div>
-				<div className="items">
+				<div className="items ">
 					<h2>About</h2>
 					<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis facilis dolorem optio, reiciendis vel quasi distinctio officia explicabo cumque blanditiis, unde hic incidunt repudiandae sequi porro illum pariatur cupiditate fuga.</span>
 				</div>
-				<div className="items">
+				<div className="items ">
 					<h2>Contact</h2>
 					<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis facilis dolorem optio, reiciendis vel quasi distinctio officia explicabo cumque blanditiis, unde hic incidunt repudiandae sequi porro illum pariatur cupiditate fuga.</span>
 				</div>
 			</div>
 			<div className="bottom">
 				<div className="left">
-					<div className="logo">CheCago STORE</div>
+					<div className="logo">OEL-AHMA STORE</div>
 					<span>© Copyright 2023. All Rights Reserved</span>
 				</div>
 				<div className="right">

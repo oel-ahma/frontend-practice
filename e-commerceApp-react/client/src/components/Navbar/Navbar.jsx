@@ -3,21 +3,24 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from "react-router-dom";
 import "./navbar.scss"
 import { useState } from 'react';
 import Cart from '../Cart/Cart';
 import { useSelector } from 'react-redux';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 
 const Navbar = () => {
 	const [cartOpen, setCartOpen] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(false);
 	const products = useSelector(state => state.cart.products);
 
 	return (
 		<div className="navbar">
 			<div className="wrapper">
-				<div className="left">
+				<div className="left responsive">
 					<div className="flag">
 						<img src={require('../../img/en.png')} alt="" />
 						<KeyboardArrowDownIcon />
@@ -50,45 +53,47 @@ const Navbar = () => {
 				<div className="center">
 					<span className="logo">
 						<Link className="link" to="/">
-							CHECAGO STORE
+							OEL-AHMA STORE
 						</Link>
 					</span>
 				</div>
 				<div className="right">
-					<div className="item">
+					<div className="item responsive">
 						<Link className="link" to="/">
 							Homepage
 						</Link>
 					</div>
-					<div className="item">
+					<div className="item responsive">
 						<Link className="link" to="/">
 							About
 						</Link>
 					</div>
-					<div className="item">
+					<div className="item responsive">
 						<Link className="link" to="/">
 							Contact
 						</Link>
 					</div>
-					<div className="item">
+					<div className="item responsive">
 						<Link className="link" to="/">
 							Stores
 						</Link>
 					</div>
 					<div className="icons">
-						<SearchIcon className='icon' />
+						<SearchIcon className='icon responsive' />
 						<PersonOutlineOutlinedIcon className='icon' />
 						<FavoriteBorderIcon className='icon' />
-						<div className="cartIcon" onClick={() => setCartOpen(!cartOpen)}>
+						<div className="cartIcon" onClick={() => { setCartOpen(!cartOpen); setMenuOpen(false) }}>
 							<ShoppingCartOutlinedIcon className='icon' />
 							<div className="cartItems">
 								{products.length}
 							</div>
 						</div>
+						<MenuIcon className='menu icon'  onClick={() => { setMenuOpen(!menuOpen); setCartOpen(false) }}/>
 					</div>
 				</div>
 			</div>
 			{cartOpen && <Cart />}
+			{menuOpen && <BurgerMenu/>}
 		</div>
 	)
 }

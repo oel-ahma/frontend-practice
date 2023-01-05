@@ -12,13 +12,13 @@
 		.top {
 			display: flex;
 			gap: 20px;
-			
+
 			.items {
 				flex: 1;
 				display: flex;
 				flex-direction: column;
 				gap: 8px;
-			
+
 				span {
 					font-size: 12px;
 					padding-right: 20px;
@@ -45,22 +45,49 @@
 				display: flex;
 				align-items: center;
 				gap: 40px;
-				
+
 				.logo {
 					font-size: 20px;
 					font-weight: 900;
 					color: #2978F7;
 				}
-				
+
 				span {
 					font-size: 12px;
 				}
 			}
+
 			.right {
 
 				img {
 					height: 80px;
 				}
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width: 880px) {
+	.footer {
+		margin: 0 12px 20px 12px;
+		.wrapper {
+			.top {
+				display: none;
+			}
+			.bottom {
+
+				.left {
+					width: 100%;
+					justify-content: space-between;
+					.logo {
+						font-size: 12px;
+					}
+				}
+				.right {
+						display: none;
+					}
+				
 			}
 		}
 	}
