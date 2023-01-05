@@ -9,8 +9,6 @@ I used Redux toolkit for the cart gestion.
 You can add any collection and product in strapi directly with strapi admin dashboard.
 
 ### `http://localhost:1337/admin`
-### `login strapi = admin`
-### `password strapi = admin`
 
 The frontend can be accessed after `npm install` && `npm run start` in this url
 ### `http://localhost:3000`
