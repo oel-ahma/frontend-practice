@@ -13,7 +13,7 @@ You can add any collection and product in strapi directly with strapi admin dash
 ### `password strapi = admin`
 
 The frontend can be accessed after `npm install` && `npm run start` in this url
-###`http://localhost:3000`
+### `http://localhost:3000`
 
 With a really simple design, the add to cart and checkout is working with a Stripe payment.
 
