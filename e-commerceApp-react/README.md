@@ -6,9 +6,15 @@ It's an e-commerce APP made with ReactJS for the frontend and with Strapi on the
 
 I used Redux toolkit for the cart gestion.
 
-You can add any collection in strapi and product directly with strapi admin dashboard.
+You can add any collection and product in strapi directly with strapi admin dashboard.
 
-# `login strapi = admin`
-# `password strapi = admin`
+### `http://localhost:1337/admin`
+### `login strapi = admin`
+### `password strapi = admin`
+
+The frontend can be accessed after `npm install` && `npm run start` in this url
+###`http://localhost:3000`
 
 With a really simple design, the add to cart and checkout is working with a Stripe payment.
+
+This project it's just a practice of mine with reactJS, strapi and redux.
